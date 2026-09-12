@@ -288,9 +288,7 @@ function updateCompletionStats(){
 
 /* Final */
 $("#replay-btn").onclick=()=>{
-  photoIndex=0;quizIndex=0;score=0;noIndex=0;letterOpened=false;wishDone=false;$("#who-answer").hidden=true;
-$("#who-continue").hidden=true;
-$("#who-answer-btn").hidden=false;
+  photoIndex=0;quizIndex=0;score=0;noIndex=0;letterOpened=false;wishDone=false;
   openedGifts.clear();foundSecrets.clear();
   $("#letter-envelope").classList.remove("opened");
   $("#letter-card").classList.add("hidden");$("#letter-continue").classList.add("hidden");
