@@ -337,27 +337,6 @@
     </div>
   </div>
 
-  <script>
-      (function () {
-        const reveal = document.getElementById("who-answer-btn");
-        const answer = document.getElementById("who-answer");
-        const cont = document.getElementById("who-continue");
-        if (reveal && answer && cont) {
-          reveal.addEventListener("click", function () {
-            answer.hidden = false;
-            cont.hidden = false;
-            answer.classList.add("who-answer-show");
-            reveal.hidden = true;
-            answer.scrollIntoView({ behavior: "smooth", block: "center" });
-          });
-          cont.addEventListener("click", function () {
-            if (typeof showScreen === "function") showScreen("final");
-            else document.getElementById("final")?.scrollIntoView({behavior:"smooth"});
-          });
-        }
-      })();
-    </script>
-
 <script id="FINAL_PHOTO_PRELOAD">
 document.addEventListener("DOMContentLoaded",()=>[
 "photo-01.png","photo-02.png","photo-03.png","photo-04.png","photo-05.png",
