@@ -288,7 +288,9 @@ function updateCompletionStats(){
 
 /* Final */
 $("#replay-btn").onclick=()=>{
-  photoIndex=0;quizIndex=0;score=0;noIndex=0;letterOpened=false;wishDone=false;
+  photoIndex=0;quizIndex=0;score=0;noIndex=0;letterOpened=false;wishDone=false;$("#who-answer").hidden=true;
+$("#who-continue").hidden=true;
+$("#who-answer-btn").hidden=false;
   openedGifts.clear();foundSecrets.clear();
   $("#letter-envelope").classList.remove("opened");
   $("#letter-card").classList.add("hidden");$("#letter-continue").classList.add("hidden");
@@ -298,7 +300,26 @@ $("#replay-btn").onclick=()=>{
   $$(".future-star").forEach(x=>x.classList.remove("found"));
   $("#future-note").textContent="Psst… one of these stars is hiding something. 👀";
   renderPhoto();renderQuiz();updateCompletionStats();showScreen("lock-screen");window.scrollTo({top:0});
-};
+};const whoAnswerBtn = $("#who-answer-btn");
+const whoAnswer = $("#who-answer");
+const whoContinue = $("#who-continue");
+
+if (whoAnswerBtn && whoAnswer && whoContinue) {
+  whoAnswerBtn.onclick = () => {
+    whoAnswer.hidden = false;
+    whoContinue.hidden = false;
+    whoAnswerBtn.hidden = true;
+
+    whoAnswer.classList.add("who-answer-show");
+
+    celebrate();
+
+    whoAnswer.scrollIntoView({
+      behavior: "smooth",
+      block: "center"
+    });
+  };
+}
 
 /* Keyboard convenience */
 document.addEventListener("keydown",e=>{
