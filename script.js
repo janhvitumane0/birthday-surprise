@@ -320,7 +320,13 @@ if (whoAnswerBtn && whoAnswer && whoContinue) {
     });
   };
 }
-
+<button
+  class="continue-btn"
+  id="who-continue"
+  data-next="final-screen"
+  hidden>
+  Continue to the end ♡
+</button>
 /* Keyboard convenience */
 document.addEventListener("keydown",e=>{
   if(e.key==="Escape")closeModal();
