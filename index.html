@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#f7d8e7">
+  <meta name="description" content="A tiny birthday world made with love.">
+  <title>For You, My Birthday Boy ♡</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="sparkle-field" aria-hidden="true"></div>
+  <div id="confetti-layer" aria-hidden="true"></div>
+
+  <main id="app">
+    <!-- 1. PASSWORD -->
+    <section id="lock-screen" class="screen active">
+      <div class="moon moon-a">☾</div><div class="moon moon-b">✦</div>
+      <div class="lock-card glass-card">
+        <div class="tiny-label">A tiny birthday secret</div>
+        <div class="lock-icon">🔐</div>
+        <h1>Only one person can unlock this… 💌</h1>
+        <p class="sub">There’s something waiting inside, birthday boy.</p>
+        <form id="password-form">
+          <label class="sr-only" for="password">Password</label>
+          <input id="password" inputmode="numeric" autocomplete="off" placeholder="Enter the secret password" maxlength="12">
+          <button class="primary-btn" type="submit">Unlock ♡</button>
+        </form>
+        <p id="lock-message" class="tiny-message" aria-live="polite"></p>
+        <div class="lock-hint">One special date. One very special person. ✨</div>
+      </div>
+    </section>
+
+    <!-- 2. YES / NO -->
+    <section id="choice-screen" class="screen">
+      <div class="center-card glass-card">
+        <div class="eyebrow">Unlocked! ✨</div>
+        <div class="big-heart">💗</div>
+        <h2>Do you wanna open this?</h2>
+        <p id="choice-message">I made a whole little world for you…</p>
+        <div class="choice-buttons">
+          <button id="yes-btn" class="primary-btn">YES ♡</button>
+          <button id="no-btn" class="secondary-btn">NO 🙈</button>
+        </div>
+        <div class="tiny-message">Psst… there is absolutely a correct answer. 😌</div>
+      </div>
+    </section>
+
+    <!-- 3. PHOTOS -->
+    <section id="photos-screen" class="screen content-screen">
+      <div class="section-heading">
+        <div class="eyebrow">📸 Exhibit A</div>
+        <h2>I have way too many pictures of you.</h2>
+        <p>Because apparently you keep being too cute.</p>
+      </div>
+      <div class="photo-gallery glass-card">
+        <div id="flash" class="camera-flash" aria-hidden="true"></div>
+        <div class="photo-stage">
+          <div class="polaroid" id="polaroid">
+            <img loading="eager" decoding="async" id="photo-image" src="photo-01.png" alt="Birthday photo">
+            <div id="photo-caption" class="photo-caption">Okay… this one is adorable. ♡</div>
+          </div>
+        </div>
+        <div class="photo-controls">
+          <button id="photo-prev" class="round-btn" aria-label="Previous photo">←</button>
+          <div id="photo-count" class="photo-count">1 / 11</div>
+          <button id="photo-next" class="round-btn" aria-label="Next photo">→</button>
+        </div>
+        <div class="dots" id="photo-dots"></div>
+      </div>
+      <button class="continue-btn" data-next="room-screen">Enter the birthday room 🎀</button>
+    </section>
+
+    <!-- 4. INTERACTIVE ROOM -->
+    <section id="room-screen" class="screen content-screen">
+      <div class="section-heading">
+        <div class="eyebrow">🎀 A tiny birthday room</div>
+        <h2>There are a few things waiting for you…</h2>
+        <p>Click around. Some things are hiding little surprises. ✨</p>
+      </div>
+      <div class="room glass-card">
+        <div class="room-window"><span>✦</span><span>☾</span><span>✦</span></div>
+        <div class="cloud cloud-1">☁</div><div class="cloud cloud-2">☁</div>
+        <button class="room-object present p1" data-gift="1" aria-label="Gift 1">🎁</button>
+        <button class="room-object present p2" data-gift="2" aria-label="Gift 2">🎁</button>
+        <button class="room-object cake" id="cake-btn" aria-label="Birthday cake">🎂<span class="flame">🕯️</span></button>
+        <button class="room-object teddy" data-message="A tiny teddy reminder: you deserve soft days, big laughs and extra cake. 🧸">🧸</button>
+        <button class="room-object envelope" id="room-envelope" data-openwhen="0" aria-label="Envelope">💌</button>
+        <button class="room-object frame" id="frame-btn" aria-label="Photo frame">🖼️</button>
+        <button class="room-object present p3" data-gift="3" aria-label="Gift 3">🎁</button>
+        <button class="room-object present p4" data-gift="4" aria-label="Gift 4">🎁</button>
+        <button class="secret secret-one" data-secret="You found a secret! 👀 You are officially allowed to smile at this screen. ♡" aria-label="Hidden secret">♥</button>
+        <button class="secret secret-two" data-secret="YOU FOUND A SECRET! 👀 Tiny reminder: someone out there is cheering for you. ✨" aria-label="Hidden secret">✦</button>
+        <div class="room-rug"></div><div class="room-table"></div>
+      </div>
+      <div id="room-status" class="room-status">Try the cake, presents, teddy, envelope, frame… and look closely. 👀</div>
+      <button class="continue-btn" data-next="gifts-screen">See the gifts 🎁</button>
+    </section>
+
+    <!-- 5. GIFTS -->
+    <section id="gifts-screen" class="screen content-screen">
+      <div class="section-heading">
+        <div class="eyebrow">🎁 Four little gifts</div>
+        <h2>Open them one by one.</h2>
+        <p>They’re tiny, but they come with maximum birthday energy.</p>
+      </div>
+      <div class="gift-grid">
+        <button class="gift-card gift-a" data-gift="1"><span class="gift-emoji">🎁</span><b>Gift 1</b><small>Open me</small></button>
+        <button class="gift-card gift-b" data-gift="2"><span class="gift-emoji">🎀</span><b>Gift 2</b><small>Open me</small></button>
+        <button class="gift-card gift-c" data-gift="3"><span class="gift-emoji">🧸</span><b>Gift 3</b><small>Open me</small></button>
+        <button class="gift-card gift-d" data-gift="4"><span class="gift-emoji">⭐</span><b>Gift 4</b><small>Open me</small></button>
+      </div>
+      <div id="gift-note" class="gift-note glass-card" aria-live="polite">Choose a gift. ✨</div>
+      <button class="continue-btn" data-next="songs-screen">Pick a song 🎵</button>
+    </section>
+
+    <!-- 6. SONGS -->
+    <section id="songs-screen" class="screen content-screen">
+      <div class="section-heading">
+        <div class="eyebrow">🎵 Soundtrack corner</div>
+        <h2>Songs I picked for you ♡</h2>
+        <p>Press listen and let the birthday soundtrack begin.</p>
+      </div>
+      <div class="music-player-intro glass-card">
+        <div class="vinyl-disc" aria-hidden="true"><span>♡</span></div>
+        <div>
+          <strong>Your little birthday CD player ♡</strong>
+          <p>Pick a song and press play — the music stays right here in your birthday surprise.</p>
+        </div>
+      </div>
+
+      <div class="song-list">
+        <article class="song-card glass-card">
+          <div class="song-top">
+            <div class="song-icon">🎧</div>
+            <div class="song-info"><span>01</span><h3>Mere Liye Tum Kaafi Ho</h3><p>Because sometimes one song says the soft things better. ♡</p></div>
+          </div>
+          <div class="youtube-player">
+            <iframe
+              src="https://www.youtube-nocookie.com/embed/Yq-W-BGmKMI"
+              title="Mere Liye Tum Kaafi Ho"
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+          </div>
+        </article>
+
+        <article class="song-card glass-card">
+          <div class="song-top">
+            <div class="song-icon">🌙</div>
+            <div class="song-info"><span>02</span><h3>Reflections</h3><p>The one with that dreamy, “too close to the stars” feeling. ✨</p></div>
+          </div>
+          <div class="youtube-player">
+            <iframe
+              src="https://www.youtube-nocookie.com/embed/x47TgeRJtH0"
+              title="Reflections"
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+          </div>
+        </article>
+
+        <article class="song-card glass-card">
+          <div class="song-top">
+            <div class="song-icon">💞</div>
+            <div class="song-info"><span>03</span><h3>Ishq Wala Love</h3><p>A little Bollywood romance for the birthday playlist. 💗</p></div>
+          </div>
+          <div class="youtube-player">
+            <iframe
+              src="https://www.youtube-nocookie.com/embed/g7W8c-mFeG0"
+              title="Ishq Wala Love"
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+          </div>
+        </article>
+      </div>
+      <button class="continue-btn" data-next="comic-screen">Turn the next page 📖</button>
+    </section>
+
+    <!-- 7. COMIC -->
+    <section id="comic-screen" class="screen content-screen">
+      <div class="section-heading">
+        <div class="eyebrow">📖 Our little comic</div>
+        <h2>From strangers to something beautiful.</h2>
+        <p>Turn through the pages slowly. ♡</p>
+      </div>
+      <div class="comic-reader glass-card">
+        <div class="comic-page-wrap" id="comic-page-wrap">
+          <img loading="eager" decoding="async" id="comic-page" src="page-01.jpg" alt="Comic page 1">
+          <div class="page-shine"></div>
+        </div>
+        <div class="comic-controls">
+          <button id="comic-prev" class="round-btn">←</button>
+          <div><b id="comic-count">Page 1 of 8</b><span>Tap the arrows to turn the page</span></div>
+          <button id="comic-next" class="round-btn">→</button>
+        </div>
+      </div>
+      <button class="continue-btn" data-next="quiz-screen">Okay… memory quiz time 🕵️</button>
+    </section>
+
+    <!-- 8. QUIZ -->
+    <section id="quiz-screen" class="screen content-screen">
+      <div class="section-heading">
+        <div class="eyebrow">🕵️ Tiny memory test</div>
+        <h2>How well do you remember us?</h2>
+        <p>Three questions. No pressure. 😌</p>
+      </div>
+      <div class="quiz-card glass-card">
+        <div class="quiz-progress"><span id="quiz-progress">1 / 3</span></div>
+        <h3 id="quiz-question"></h3>
+        <div id="quiz-options" class="quiz-options"></div>
+        <div id="quiz-feedback" class="quiz-feedback"></div>
+        <button id="quiz-next" class="primary-btn hidden">Next ♡</button>
+        <div id="quiz-result" class="quiz-result hidden"></div>
+      </div>
+      <button class="continue-btn hidden" id="quiz-continue" data-next="openwhen-screen">Open the envelopes 💌</button>
+    </section>
+
+    <!-- 9/10. OPEN WHEN -->
+    <section id="openwhen-screen" class="screen content-screen">
+      <div class="section-heading">
+        <div class="eyebrow">💌 Open When</div>
+        <h2>Four little envelopes for different days.</h2>
+        <p>Click one. Let it open gently.</p>
+      </div>
+      <div class="envelope-grid">
+        <button class="envelope-card" data-openwhen="0"><span>💗</span><b>When you're happy</b><small>Open me</small></button>
+        <button class="envelope-card" data-openwhen="1"><span>🥺</span><b>When you miss me</b><small>Open me</small></button>
+        <button class="envelope-card" data-openwhen="2"><span>🌧️</span><b>When it's a bad day</b><small>Open me</small></button>
+        <button class="envelope-card" data-openwhen="3"><span>✨</span><b>When you need a smile</b><small>Open me</small></button>
+      </div>
+      <div id="openwhen-note" class="letter-note glass-card">Choose an envelope. 💗</div>
+      <button class="continue-btn" data-next="letter-screen">There's one more thing… 💌</button>
+    </section>
+
+    <!-- 11. LETTER -->
+    <section id="letter-screen" class="screen content-screen special-screen">
+      <div class="section-heading">
+        <div class="eyebrow">💌 A letter just for you</div>
+        <h2>There's one more thing I wrote.</h2>
+        <p>Take your time. This one is meant to be read slowly. ♡</p>
+      </div>
+      <div class="letter-envelope-wrap">
+        <button id="letter-envelope" class="big-envelope" aria-label="Open the letter">💌<span>Click to open</span></button>
+      </div>
+      <article id="letter-card" class="letter-card glass-card hidden">
+        <div class="letter-paper">
+          <div class="letter-deco">✦ ♡ ✦</div>
+          <h3>To my favourite person…</h3>
+          <div id="letter-text" class="letter-text"></div>
+          <div class="letter-sign">with all my love, ♡</div>
+        </div>
+      </article>
+      <button class="continue-btn hidden" id="letter-continue" data-next="wish-screen">Make a birthday wish 🎂</button>
+    </section>
+
+    <!-- 12. WISH -->
+    <section id="wish-screen" class="screen content-screen special-screen">
+      <div class="section-heading">
+        <div class="eyebrow">🎂 Birthday wish</div>
+        <h2>Okay, birthday boy… make a wish.</h2>
+        <p>Click the candles and let your wish float into the stars. ✨</p>
+      </div>
+      <div class="wish-card glass-card" id="wish-card">
+        <div class="wish-cake" id="wish-cake" role="button" tabindex="0" aria-label="Blow out the candles">
+          <div class="cake-candles"><span>🕯️</span><span>🕯️</span><span>🕯️</span></div>
+          <div class="cake-body">🎂</div>
+        </div>
+        <p id="wish-prompt">Three tiny candles. One birthday wish. ♡</p>
+        <button id="wish-done" class="primary-btn hidden">I made my wish ♡</button>
+      </div>
+      <button class="continue-btn hidden" id="wish-continue" data-next="future-screen">Follow the stars 🌌</button>
+    </section>
+
+    <!-- 13. FUTURE + SECRET -->
+    <section id="future-screen" class="screen content-screen special-screen">
+      <div class="section-heading">
+        <div class="eyebrow">🌌 A little look ahead</div>
+        <h2>This isn't the end of our story…</h2>
+        <p>There are still so many memories waiting for us. Click the stars. ✨</p>
+      </div>
+      <div class="future-sky glass-card" id="future-sky">
+        <span class="future-star fs1" data-future="A million tiny moments are still waiting to become memories. ♡">✦</span>
+        <span class="future-star fs2" data-future="I hope the future gives you many reasons to smile. 💗">✧</span>
+        <span class="future-star fs3" data-future="Keep this little birthday world somewhere safe in your heart. 🌙">✦</span>
+        <span class="future-star fs4" data-future="And yes… I still want the future to have lots and lots of us. ♡">★</span>
+        <div class="future-center">
+          <div class="future-moon">🌙</div>
+          <h3>For all the timelines still ahead…</h3>
+          <p>May they be full of laughter, little adventures, silly moments and love.</p>
+        </div>
+        <button id="dont-click" class="dont-click">⚠️ DON'T CLICK THIS</button>
+      </div>
+      <div id="future-note" class="future-note glass-card">Psst… one of these stars is hiding something. 👀</div>
+      <button class="continue-btn" data-next="final-screen">Okay… one last thing 💌</button>
+    </section>
+
+    <!-- 14. FINAL -->
+    <section id="final-screen" class="screen final-screen">
+      <div class="final-stars">✦ ✧ ✦</div>
+      <div class="completion-badge">🎀 BIRTHDAY ADVENTURE COMPLETE 🎀</div>
+      <div class="completion-stats glass-card">
+        <span><b id="stat-gifts">0</b><small>gifts opened</small></span>
+        <span><b id="stat-secrets">0</b><small>secrets found</small></span>
+        <span><b id="stat-quiz">0/3</b><small>quiz score</small></span>
+      </div>
+      <div class="final-card glass-card">
+        <div class="cake-final" id="final-cake">🎂</div>
+        <div class="eyebrow">Happy Birthday, my love ♡</div>
+        <h2>For my birthday boy…</h2>
+        <div id="final-message" class="final-message">
+          <p>I love you love you soo much my chimpanzeeee, besan ke laddoo, mera chhotu hathi, mera bebu, mera jaanu....</p>
+          <p>Wishing youuu a very very happiest birthday babe.</p>
+          <p>I want us to together till universe end.</p>
+          <p>I want to meet you in each timeline in each different life.</p>
+          <p>You're soo special for me I can't explain.</p>
+          <p>You are my everything, my love.</p>
+        </div>
+        <div class="final-sign">♡ always & forever ♡</div>
+      </div>
+      <button id="replay-btn" class="secondary-btn">Replay from the beginning ↺</button>
+    </section>
+  </main>
+
+  <div id="modal" class="modal" aria-hidden="true">
+    <div class="modal-backdrop"></div>
+    <div class="modal-card glass-card">
+      <button id="modal-close" class="modal-close" aria-label="Close">×</button>
+      <div id="modal-emoji" class="modal-emoji">💌</div>
+      <h3 id="modal-title">A little surprise</h3>
+      <p id="modal-text"></p>
+      <button id="modal-ok" class="primary-btn">Awww ♡</button>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" aria-live="polite"></div>
+  <script src="script.js"></script>
+
+    <section class="screen section who-section" id="who-is-he">
+      <div class="section-inner">
+        <p class="eyebrow">one last little question ♡</p>
+        <h2>Who is he to me?</h2>
+        <p class="section-subtitle">I think the answer is a little bigger than just one word...</p>
+        <button class="big-question-btn" id="who-answer-btn" type="button">
+          <span>Tap to reveal my answer</span><span aria-hidden="true">♡</span>
+        </button>
+        <div class="who-answer glass-card" id="who-answer" hidden>
+          <p class="who-list">
+            My husband,<br>my boyfriend,<br>my friend,<br>my bestest friend,<br>
+            my home boy,<br>my baby,<br>my love of life,<br>my only boy,<br>
+            my darling,<br>my sweet little world,<br>my everything — I am all yours.
+          </p>
+          <p class="who-final">
+            I really wish you stay happy all along your life and live my lives too.
+            I'm always with you, baby...<br><br>
+            Once again, happiest birthday to youu jaanuu. ♡
+          </p>
+        </div>
+        <button class="continue-btn" id="who-continue" type="button" hidden>Continue to the end ♡</button>
+      </div>
+    </section>
+
+
+    <script>
+      (function () {
+        const reveal = document.getElementById("who-answer-btn");
+        const answer = document.getElementById("who-answer");
+        const cont = document.getElementById("who-continue");
+        if (reveal && answer && cont) {
+          reveal.addEventListener("click", function () {
+            answer.hidden = false;
+            cont.hidden = false;
+            answer.classList.add("who-answer-show");
+            reveal.hidden = true;
+            answer.scrollIntoView({ behavior: "smooth", block: "center" });
+          });
+          cont.addEventListener("click", function () {
+            if (typeof showScreen === "function") showScreen("final");
+            else document.getElementById("final")?.scrollIntoView({behavior:"smooth"});
+          });
+        }
+      })();
+    </script>
+
+<script id="FINAL_PHOTO_PRELOAD">
+document.addEventListener("DOMContentLoaded",()=>[
+"photo-01.png","photo-02.png","photo-03.png","photo-04.png","photo-05.png",
+"photo-06.png","photo-07.png","photo-08.png","photo-09.png","photo-10.png","photo-11.png"
+].forEach(src=>{const i=new Image();i.decoding="async";i.src=src;}));
+</script></body>
+</html>
