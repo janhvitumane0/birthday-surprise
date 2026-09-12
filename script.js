@@ -95,9 +95,8 @@ $("#no-btn").onclick=()=>{
   b.animate([{transform:"translateX(0) rotate(0)"},{transform:"translateX(10px) rotate(3deg)"},{transform:"translateX(-7px) rotate(-2deg)"},{transform:"translateX(0)"}],{duration:420});
 };
 $("#yes-btn").onclick=()=>{celebrate();setTimeout(()=>showScreen("photos-screen"),650)};
-
 /* 3. Photos */
-const photos=Array.from({length:11},(_,i)=>`assets/photos/photo-${String(i+1).padStart(2,"0")}.png`);
+const photos=Array.from({length:11},(_,i)=>`photo-01.png-${String(i+1).padStart(2,"0")}.png`);
 const captions=[
   "Okay… this one is adorable. ♡","Birthday boy energy. ✨","A very serious cutie. 😌",
   "This one deserves a little heart. 💗","No explanation needed. 🥹","Just… look at you.",
@@ -153,7 +152,7 @@ $("#frame-btn").onclick=()=>openModal("A little frame", "This frame is for the m
 
 /* 6. Comic */
 let comicIndex=0;
-const comicPages=Array.from({length:8},(_,i)=>`assets/comic/page-${String(i+1).padStart(2,"0")}.jpg`);
+const comicPages=Array.from({length:8},(_,i)=>`page-01.jpg-${String(i+1).padStart(2,"0")}.jpg`);
 function renderComic(){
   const wrap=$("#comic-page-wrap"), img=$("#comic-page");
   wrap.classList.remove("turn"); void wrap.offsetWidth; wrap.classList.add("turn");
